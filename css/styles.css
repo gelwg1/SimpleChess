@@ -17,9 +17,11 @@ body {
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+  color: azure;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#newPosition {
+#nextPosition {
   display: block;
   margin: 0 auto;
   padding: 10px 20px;
@@ -32,7 +34,7 @@ body {
 
 /* Color for move indicator */
 .white-move {
-  color: white;
+  color: azure;
 }
 
 .black-move {
