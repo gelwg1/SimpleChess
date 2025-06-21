@@ -1,0 +1,54 @@
+body {
+  background-color: darkslategray;
+}
+
+#myBoard {
+  margin: 20px auto;
+  margin-top: 10px;
+  width: 400px;
+}
+
+#rightBlock {
+  color: #CCCCCC;
+  width: 30%;
+}
+
+#moveIndicator {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#newPosition {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Color for move indicator */
+.white-move {
+  color: white;
+}
+
+.black-move {
+  color: black;
+}
+
+.theme-selection {
+  margin-bottom: 15px;
+}
+
+.theme-selection label {
+  display: inline-block;
+  margin-right: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.theme-selection label input {
+  width: 18px; height: 18px;
+}
