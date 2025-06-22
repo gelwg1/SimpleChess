@@ -61,6 +61,7 @@ export const getShuffleSelected = (tactics, themes) => {
 };
 
 export const updateMoveIndicator = (moveIndicator, fen) => {
+  if(!fen) return false;
   const turn = fen.split(" ")[1];
   moveIndicator.textContent = turn === "w" ? "White to move" : "Black to move";
   moveIndicator.style.color = turn === "w" ? "azure" : "black";
