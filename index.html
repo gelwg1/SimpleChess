@@ -10,11 +10,14 @@
 </head>
 <body>
   <div style="display: flex; justify-content: center;gap: 5%;">
-    <div style="margin-left: 10%;">
+    <div id="leftBlock" style="margin-left: 10%;">
       <div id="moveIndicator">Click 'shuffle' to start</div>
       <div style="display: flex; align-items: center;">
         <div id="myBoard"></div>
-        <button id="rotate" style="height: 30px;">Rotate</button>
+        <div style="display: flex; flex-direction: column;">
+          <button id="rotate" style="height: 30px;">Rotate</button>
+          <button id="reset" style="height: 30px;">Reset</button>
+        </div>
       </div>
       
       <div class="controls">
@@ -22,6 +25,7 @@
       </div>
     </div>
     <div id="rightBlock">
+      <div class="move-list-container" id="moveList"></div>
       <div class="theme-selection" id="themeSelect">
         <h2>Select Tactical Themes:</h2>
       </div>

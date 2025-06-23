@@ -33,11 +33,6 @@ function shuffle(array) {
   return shuffled;
 }
 
-export const loadBoard = (currentPosition, board) => {
-  board.orientation("white");
-  board.position(currentPosition);
-};
-
 export const getPositions = (tactics) => {
   if (!tactics || typeof tactics !== "object") {
     alert("There's no tactics detected!");
