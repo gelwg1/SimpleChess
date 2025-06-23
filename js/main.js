@@ -72,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
     handlers.loadBoard(positions[index]);
   });
   //TODO: make the code to load from many files (instead of just Polgar.js)
+  //TODO: Make the board able to draw arrows.
+  //Todo: Make the board play itself, true to the line.s
 });
 
 
