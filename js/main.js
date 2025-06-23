@@ -41,14 +41,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadThemeList(document.querySelector("#themeSelect"), tactics);
   loadNumberOfPositions(total, positions.length);
+  let loadNewBoard = () => {
+    game = new Chess();
+    game.load(positions[index].fen);
+    handlers.loadBoard(positions[index].fen);
+    updateMoveIndicator(moveIndicator, positions[index].fen);
+    handlers.setSolution(positions[index].solution)
+  };
   shuffleBtn.addEventListener("click", () => {
     themes = getCheckedThemes(document.querySelector("#themeSelect"));
     positions = getShuffleSelected(tactics, themes);
     index = 0;
-    game = new Chess();
-    game.load(positions[index]);
-    handlers.loadBoard(positions[index]);
-    updateMoveIndicator(moveIndicator, positions[index]);
+    loadNewBoard();
   });
   nextPositionBtn.addEventListener("click", () => {
     if (board.fen() === START_POSITION) {
@@ -59,17 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("No more problem!");
         return;
       }
-      game = new Chess();
-      game.load(positions[index]);
-      handlers.loadBoard(positions[index]);
-      updateMoveIndicator(moveIndicator, positions[index]);
+      loadNewBoard();
     }
   });
   rotateBtn.addEventListener("click", () => board.flip());
   resetBtn.addEventListener("click", () => {
-    game = new Chess();
-    game.load(positions[index]);
-    handlers.loadBoard(positions[index]);
+    loadNewBoard()
   });
   //TODO: make the code to load from many files (instead of just Polgar.js)
   //TODO: Make the board able to draw arrows.
