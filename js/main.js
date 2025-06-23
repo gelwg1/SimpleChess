@@ -5,7 +5,6 @@ import {
   loadNumberOfPositions,
   getShuffleSelected,
   getCheckedThemes,
-  loadBoard,
   updateMoveIndicator,
 } from "./createTactic.js";
 import { createHandlers } from "./onlyLegalMoves.js";
@@ -19,11 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const shuffleBtn = document.getElementById("shuffle");
   const moveIndicator = document.getElementById("moveIndicator");
   const rotateBtn = document.getElementById("rotate");
+  const resetBtn = document.getElementById("reset");
   const nextPositionBtn = document.getElementById("nextPosition");
+  const moveList = document.getElementById("moveList");
 
   const getBoard = () => board;
   const getGame = () => game;
-  const handlers = createHandlers(getGame, getBoard);
+  const handlers = createHandlers(getGame, getBoard, moveList);
   const config = {
     position: "start",
     draggable: true,
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     index = 0;
     game = new Chess();
     game.load(positions[index]);
-    loadBoard(positions[index], board);
+    handlers.loadBoard(positions[index]);
     updateMoveIndicator(moveIndicator, positions[index]);
   });
   nextPositionBtn.addEventListener("click", () => {
@@ -58,14 +59,18 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("No more problem!");
         return;
       }
-      console.log("FEN: "+positions[index]);
       game = new Chess();
       game.load(positions[index]);
-      loadBoard(positions[index], board);
+      handlers.loadBoard(positions[index]);
       updateMoveIndicator(moveIndicator, positions[index]);
     }
   });
   rotateBtn.addEventListener("click", () => board.flip());
+  resetBtn.addEventListener("click", () => {
+    game = new Chess();
+    game.load(positions[index]);
+    handlers.loadBoard(positions[index]);
+  });
   //TODO: make the code to load from many files (instead of just Polgar.js)
 });
 
