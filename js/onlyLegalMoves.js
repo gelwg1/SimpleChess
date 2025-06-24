@@ -1,4 +1,4 @@
-export function createHandlers(getGame, getBoard, moveList) {
+export function createHandlers(getGame, getBoard, moveList, moveIndicator) {
   let moveNumber = 1;
   let solutionIndex = 0;
   let solutionMoves = [];
@@ -34,38 +34,45 @@ export function createHandlers(getGame, getBoard, moveList) {
       }
     },
 
-    onDrop: function (source, target) {
-      let board = getBoard();
-      let game = getGame();
-      if(solutionIndex<solutionMoves.length-1){
-        if(source===solutionMoves[solutionIndex].s && target===solutionMoves[solutionIndex].t) {
-          solutionIndex ++ ;
-        }else {
-          //TODO : Create red color imform player that they made the wrong move.
-          return "snapback";
-        }
-      } else if(solutionIndex === solutionMoves.length-1) {
-          //TODO : Create red color imform player that they completed the problem.
-          alert("Success");
-      }else{
-        return "snapback";
-      }
+    onDrop: function(source, target) {
+      const board = getBoard();
+      const game = getGame();
+      
+      // if (solutionIndex > solutionMoves.length - 1) return "snapback";
+      
+      // const isCorrectMove = source === solutionMoves[solutionIndex].s && 
+      //                     target === solutionMoves[solutionIndex].t;
+      
+      // if (!isCorrectMove) {
+      //   // const move = game.move({ from: source, to: target, promotion: "q" });
+      //   // if (!move) return "snapback";
+      //   // const moves = game.moves();
+      //   moveIndicator.textContent = "Wrong move";
+      //   moveIndicator.style.color = "#cc3333";
+      //   return "snapback";
+      // }
+
+      // solutionIndex++;
+      // if (solutionIndex > solutionMoves.length - 1) {
+      //   moveIndicator.textContent = "Success";
+      //   moveIndicator.style.color = "#629924";
+      // }
 
       const turn = game.turn();
       const move = game.move({ from: source, to: target, promotion: "q" });
       if (!move) return "snapback";
+      
+      moveList.textContent += move.san + " ";
 
-      const newMove =
-        turn === "w"
-          ? `${moveNumber++}.${move.san} `
-          : moveNumber === 1
-          ? `${moveNumber}...${move.san} `
-          : `${move.san} `;
-      moveList.textContent += newMove;
+      // const newMove = turn === "w" ? `${moveNumber++}.${move.san} ` : moveNumber === 1 
+      //     ? `${moveNumber}...${move.san} ` : `${move.san} `;
+      // moveList.textContent += newMove;
 
-      window.setTimeout(() => {
-        selfMove(game, board, solutionMoves[solutionIndex].s, solutionMoves[solutionIndex].t);
-      }, 250);
+      // if (solutionIndex <= solutionMoves.length - 1) {
+      //   window.setTimeout(() => {
+      //     selfMove(game, board, solutionMoves[solutionIndex].s, solutionMoves[solutionIndex].t);
+      //   }, 250);
+      // }
     },
 
     onSnapEnd: function () {
