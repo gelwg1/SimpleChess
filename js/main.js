@@ -44,11 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
   loadThemeList(document.querySelector("#themeSelect"), tactics);
   loadNumberOfPositions(total, positions.length);
   let loadNewBoard = () => {
-    // if(index>0 && !isReseting){
-    //   let a = `{ fen: '${positions[index-1].fen}', solution: "${moveList.textContent}"},`;
-    //   solutions += a;
-    //   console.log(solutions);
-    // }
+    if(index>0 && !isReseting){
+      let a = `{ fen: '${positions[index-1].fen}', solution: "${moveList.textContent}"},`;
+      solutions += a;
+      console.log(a);
+    }
     game = new Chess();
     game.load(positions[index].fen);
     handlers.loadBoard(positions[index].fen);
@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   shuffleBtn.addEventListener("click", () => {
     themes = getCheckedThemes(document.querySelector("#themeSelect"));
     positions = getShuffleSelected(tactics, themes);
+    loadNumberOfPositions(total, positions.length)
     index = 0;
     loadNewBoard();
   });
